@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Rover AgroTech</title>
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body class="login-page">
+
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <div class="logo">
+                <span>🤖</span>
+                <h1>Rover AgroTech</h1>
+            </div>
+
+            <p class="login-subtitle">
+                Sistema de monitoramento agrícola
+            </p>
+
+            <form id="loginForm">
+
+                <div class="input-group">
+                    <label for="username">Usuário</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Digite seu usuário"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="login-button">
+                    Entrar
+                </button>
+
+                <p id="loginMessage" class="login-message"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="js/login.js"></script>
+
+</body>
+</html>

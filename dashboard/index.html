@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Rover AgroTech</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-icon">🤖</div>
+
+            <div>
+                <h2>Rover</h2>
+                <span>AgroTech</span>
+            </div>
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="#" class="menu-item active">
+                <span>📊</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>🤖</span>
+                Rovers
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>📈</span>
+                Histórico
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>📍</span>
+                Localização
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <button id="logoutButton">
+                🚪 Sair
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+
+                <p>
+                    Monitoramento do Rover AgroTech
+                </p>
+            </div>
+
+
+            <div class="user-area">
+
+                <div class="status-indicator">
+                    <span></span>
+                    Sistema online
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             SELEÇÃO DO ROVER
+        ========================== -->
+
+        <section class="rover-selector">
+
+            <div>
+
+                <span class="section-label">
+                    Rover selecionado
+                </span>
+
+                <h2 id="selectedRover">
+                    ROVER-01
+                </h2>
+
+            </div>
+
+
+            <select id="roverSelect">
+
+                <option value="ROVER-01">
+                    ROVER-01
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- =========================
+             STATUS DO ROVER
+        ========================== -->
+
+        <section class="rover-status">
+
+            <div class="status-card">
+
+                <span class="status-icon">
+                    🟢
+                </span>
+
+                <div>
+
+                    <span class="card-label">
+                        Status
+                    </span>
+
+                    <strong>
+                        Online
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <span class="status-icon">
+                    🔋
+                </span>
+
+                <div>
+
+                    <span class="card-label">
+                        Bateria
+                    </span>
+
+                    <strong id="batteryValue">
+                        -- %
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <span class="status-icon">
+                    📡
+                </span>
+
+                <div>
+
+                    <span class="card-label">
+                        Sinal LoRa
+                    </span>
+
+                    <strong id="rssiValue">
+                        -- dBm
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <span class="status-icon">
+                    🕐
+                </span>
+
+                <div>
+
+                    <span class="card-label">
+                        Última atualização
+                    </span>
+
+                    <strong id="lastUpdate">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SENSORES
+        ========================== -->
+
+        <section>
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Monitoramento
+                    </h2>
+
+                    <p>
+                        Dados da última telemetria recebida
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="sensor-grid">
+
+
+                <!-- UMIDADE DO SOLO -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-card-header">
+
+                        <span class="sensor-icon">
+                            🌱
+                        </span>
+
+                        <span class="sensor-title">
+                            Umidade do solo
+                        </span>
+
+                    </div>
+
+                    <div class="sensor-value">
+
+                        <span id="soilHumidity">
+                            --
+                        </span>
+
+                        <small>
+                            %
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- UMIDADE DO AR -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-card-header">
+
+                        <span class="sensor-icon">
+                            💧
+                        </span>
+
+                        <span class="sensor-title">
+                            Umidade do ar
+                        </span>
+
+                    </div>
+
+                    <div class="sensor-value">
+
+                        <span id="airHumidity">
+                            --
+                        </span>
+
+                        <small>
+                            %
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TEMPERATURA -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-card-header">
+
+                        <span class="sensor-icon">
+                            🌡️
+                        </span>
+
+                        <span class="sensor-title">
+                            Temperatura
+                        </span>
+
+                    </div>
+
+                    <div class="sensor-value">
+
+                        <span id="temperature">
+                            --
+                        </span>
+
+                        <small>
+                            °C
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUALIDADE DO AR -->
+
+                <div class="sensor-card">
+
+                    <div class="sensor-card-header">
+
+                        <span class="sensor-icon">
+                            🌫️
+                        </span>
+
+                        <span class="sensor-title">
+                            Qualidade do ar
+                        </span>
+
+                    </div>
+
+                    <div class="sensor-value">
+
+                        <span id="airQuality">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             GPS + HISTÓRICO
+        ========================== -->
+
+        <section class="bottom-grid">
+
+
+            <!-- LOCALIZAÇÃO -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            📍 Localização
+                        </h2>
+
+                        <p>
+                            Coordenadas atuais do rover
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="coordinates">
+
+                    <div>
+
+                        <span>
+                            Latitude
+                        </span>
+
+                        <strong id="latitude">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Longitude
+                        </span>
+
+                        <strong id="longitude">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div id="map"></div>
+
+            </div>
+
+
+            <!-- HISTÓRICO -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            📈 Histórico
+                        </h2>
+
+                        <p>
+                            Últimas medições
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="history-charts">
+
+                    <div class="chart-box">
+                        <h3>🌡️ Temperatura do ar</h3>
+                        <div class="chart-container">
+                            <canvas id="temperatureChart"></canvas>
+                        </div>
+                </div>
+
+
+                <div class="chart-box">
+                    <h3>🌱 Umidade do solo</h3>
+                    <div class="chart-container">
+                     <canvas id="soilHumidityChart"></canvas>
+                    </div>
+                </div>
+
+
+                <div class="chart-box">
+                    <h3>💧 Umidade do ar</h3>
+                    <div class="chart-container">
+                        <canvas id="airHumidityChart"></canvas>
+                    </div>
+                </div>
+
+
+                <div class="chart-box">
+                 <h3>📡 Sinal LoRa</h3>
+                    <div class="chart-container">
+                        <canvas id="rssiChart"></canvas>
+                    </div>
+                </div>
+
+    </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

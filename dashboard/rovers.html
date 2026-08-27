@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rovers | Rover AgroTech</title>
+
+    <link
+        rel="stylesheet"
+        href="css/rovers.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <h2>
+                    Rover
+                </h2>
+
+                <span>
+                    AgroTech
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a
+                href="index.html"
+                class="menu-item"
+            >
+
+                <span>
+                    📊
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="rovers.html"
+                class="menu-item active"
+            >
+
+                <span>
+                    🤖
+                </span>
+
+                Rovers
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <span>
+                    📈
+                </span>
+
+                Histórico
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <span>
+                    📍
+                </span>
+
+                Localização
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <button id="logoutButton">
+
+                🚪 Sair
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ========================================
+         CONTEÚDO PRINCIPAL
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Rovers
+                </h1>
+
+                <p>
+                    Gerenciamento dos rovers cadastrados
+                </p>
+
+            </div>
+
+
+            <div class="user-area">
+
+                <div class="status-indicator">
+
+                    <span></span>
+
+                    Sistema online
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ========================================
+             CABEÇALHO DA LISTA
+        ========================================= -->
+
+        <section class="page-header">
+
+            <div>
+
+                <h2>
+                    Rovers cadastrados
+                </h2>
+
+                <p>
+                    Visualize e gerencie os rovers do sistema.
+                </p>
+
+            </div>
+
+
+            <button
+                id="refreshButton"
+                class="btn-secondary"
+            >
+
+                🔄 Atualizar
+
+            </button>
+
+        </section>
+
+
+
+        <!-- ========================================
+             MENSAGEM
+        ========================================= -->
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+
+        <!-- ========================================
+             LISTA DE ROVERS
+        ========================================= -->
+
+        <section
+            id="roversContainer"
+            class="rovers-container"
+        >
+
+            <!--
+                Os cards dos rovers
+                serão criados pelo JavaScript.
+            -->
+
+            <div class="loading">
+
+                Carregando rovers...
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script src="js/rovers.js"></script>
+
+</body>
+
+</html>
